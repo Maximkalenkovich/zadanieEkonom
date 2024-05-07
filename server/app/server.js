@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { createOrder, getAllOrders } = require('../controllers/orderController');
+let data = require('../data/data.json');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,9 +16,9 @@ app.listen(PORT, () => {
 
 const fs = require('fs');
 
-let data;
 
-fs.readFile('data.json', 'utf8', (err, jsonString) => {
+
+fs.readFile('../data/data.json', 'utf8', (err, jsonString) => {
     if (err) {
         console.log('Error reading file:', err);
         return;
@@ -28,3 +30,15 @@ fs.readFile('data.json', 'utf8', (err, jsonString) => {
         console.log('Error parsing JSON string:', err);
     }
 });
+
+const productController = require('../controllers/productController');
+
+app.get('/products', productController.getAllProducts);
+app.get('/products/:id', productController.getProductById);
+
+
+
+app.post('/orders', createOrder);
+app.get('/orders', getAllOrders);
+module.exports = data;
+
