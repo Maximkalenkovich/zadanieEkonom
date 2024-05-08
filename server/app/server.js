@@ -3,20 +3,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { createOrder, getAllOrders } = require('../controllers/orderController');
 let data = require('../data/data.json');
-
+const config = require('config')
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
 const fs = require('fs');
-
-
 
 fs.readFile('../data/data.json', 'utf8', (err, jsonString) => {
     if (err) {
@@ -32,12 +30,8 @@ fs.readFile('../data/data.json', 'utf8', (err, jsonString) => {
 });
 
 const productController = require('../controllers/productController');
-
 app.get('/products', productController.getAllProducts);
 app.get('/products/:id', productController.getProductById);
-
-
-
 app.post('/orders', createOrder);
 app.get('/orders', getAllOrders);
 module.exports = data;
