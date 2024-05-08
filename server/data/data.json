@@ -1,3 +1,6 @@
+
+
+
 {
   "products": [
     {
@@ -5,14 +8,14 @@
       "name": "Product 1",
       "description": "This is product 1",
       "price": 100,
-      "image": "product1.jpg"
+      "image": "https://www.megapolys.com/upload/iblock/c76/dbwjsrvys9tn4kdlr2309qm8fjfzbmm1.jpg"
     },
     {
       "id": 2,
       "name": "Product 2",
       "description": "This is product 2",
       "price": 200,
-      "image": "product2.jpg"
+      "image": "https://www.megapolys.com/upload/iblock/c76/dbwjsrvys9tn4kdlr2309qm8fjfzbmm1.jpg"
     }
   ],
   "orders": []
