@@ -4,15 +4,18 @@ const { v4: uuidv4 } = require('uuid');
 
 let data = { orders: [] };
 
-if (fs.existsSync('data.json')) {
+if (fs.existsSync('dataOrder.json')) {
     const rawData = fs.readFileSync('data.json');
     data = JSON.parse(rawData.toString());
 }
 
 exports.createOrder = (req, res) => {
+    const { productId, ...orderDetails } = req.body;
+
     const newOrder = {
         id: uuidv4(),
-        ...req.body,
+        productId,
+        ...orderDetails,
     };
     data.orders.push(newOrder);
 
@@ -23,6 +26,7 @@ exports.createOrder = (req, res) => {
         }
         console.log('Order created successfully');
         res.status(201).json(newOrder);
+        res.redirect('/products');
     });
 };
 
